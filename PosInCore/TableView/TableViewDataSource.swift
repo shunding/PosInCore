@@ -69,18 +69,18 @@ open class TableViewDataSource: NSObject {
 
 extension TableViewDataSource: UITableViewDataSource {
     
-    @objc public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    @objc open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         fatalError("\(type(of: self)): You must override \(#function)")
     }
     
-    @objc public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    @objc open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reuseId = self.tableView(tableView, reuseIdentifierForIndexPath: indexPath)
         let cell = tableView .dequeueReusableCell(withIdentifier: reuseId) as! TableViewCell
         self.tableView(tableView, configureCell: cell, forIndexPath: indexPath)
         return cell
     }
     
-    @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    @objc open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let reuseID = self.tableView(tableView, reuseIdentifierForHeaderInSection: section),
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseID) as? TableViewSectionHeaderFooterView {
                 self.tableView(tableView, configureHeader: header, forSection: section)
@@ -89,7 +89,7 @@ extension TableViewDataSource: UITableViewDataSource {
         return nil
     }	
     
-    @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    @objc open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if let reuseID = self.tableView(tableView, reuseIdentifierForFooterInSection: section),
             let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseID) as? TableViewSectionHeaderFooterView {
                 self.tableView(tableView, configureFooter: footer, forSection: section)
@@ -102,7 +102,7 @@ extension TableViewDataSource: UITableViewDataSource {
 
 extension TableViewDataSource: UITableViewDelegate {
     
-    @objc public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    @objc open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (tableView as? TableView != nil) {
             return UITableViewAutomaticDimension
         } else {
@@ -110,11 +110,11 @@ extension TableViewDataSource: UITableViewDelegate {
         }
     }
     
-    @objc public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    @objc open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    @objc public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    @objc open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
@@ -124,7 +124,7 @@ extension TableViewDataSource: UITableViewDelegate {
 extension TableViewDataSource {
     
     @objc(tableView:willDisplayCell:forRowAtIndexPath:)
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).row == tableView.numberOfRows(inSection: (indexPath as NSIndexPath).section) - 1 {
             tableViewDelegate?.didScrollToTheEndOfTable()
         }
@@ -143,7 +143,7 @@ extension TableViewDataSource {
     }
     
     @objc(tableView:didEndDisplayingCell:forRowAtIndexPath:)
-    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if cell.conforms(to: TableViewChildViewControllerCell.self) {
             guard let _ = parentViewController else {
                 fatalError("Must have a parent view controller to support cell \(cell)")
@@ -159,7 +159,7 @@ extension TableViewDataSource {
 
 //MARK: UIScrollViewDelegate
 extension TableViewDataSource {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let tableView = scrollView as? TableView {
             tableView.refreshHeaderView?.containingScrollViewDidScroll(tableView)
         } else {
@@ -167,7 +167,7 @@ extension TableViewDataSource {
         }
     }
     
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if let tableView = scrollView as? TableView {
             tableView.refreshHeaderView?.containingScrollViewDidEndDragging(tableView)
         } else {
