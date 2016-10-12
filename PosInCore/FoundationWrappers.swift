@@ -14,7 +14,7 @@ Objective-C synchronised
 - parameter lock:    lock object
 - parameter closure: closure
 */
-public func synced(_ lock: AnyObject, closure: () -> ()) {
+public func synced(_ lock: Any, closure: () -> ()) {
     objc_sync_enter(lock)
     closure()
     objc_sync_exit(lock)

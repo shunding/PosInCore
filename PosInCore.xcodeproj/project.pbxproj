@@ -54,6 +54,7 @@
 		77062CBF1D9D461C00A0BC62 /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		77062CC01D9D461C00A0BC62 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		77062CC11D9D461C00A0BC62 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		77A36F6E1DAE38530072BC21 /* PosInCore.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = PosInCore.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		77062C871D9D439100A0BC62 = {
 			isa = PBXGroup;
 			children = (
+				77A36F6E1DAE38530072BC21 /* PosInCore.podspec */,
 				77062C931D9D439100A0BC62 /* PosInCore */,
 				77062C921D9D439100A0BC62 /* Products */,
 				77062CBD1D9D461B00A0BC62 /* Frameworks */,
@@ -401,6 +403,7 @@
 				77062C9B1D9D439100A0BC62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
